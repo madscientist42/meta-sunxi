@@ -1,6 +1,8 @@
 SOC_FAMILY ??= ""
 include conf/machine/include/soc-family.inc
 
+MACHINEOVERRIDES =. "sunxi:"
+
 # Sub-architecture support
 MACHINE_SOCARCH_SUFFIX ?= ""
 MACHINE_SOCARCH_SUFFIX_sun4i = "-sun4i"
@@ -13,6 +15,7 @@ XSERVER = "xserver-xorg \
            xf86-input-keyboard"
 
 PREFERRED_PROVIDER_virtual/kernel ?= "linux-mainline"
+PREFERRED_VERSION_linux-mainline ?= "5.4.%"
 PREFERRED_PROVIDER_u-boot ?= "u-boot"
 PREFERRED_PROVIDER_virtual/bootloader ?= "u-boot"
 
@@ -26,7 +29,6 @@ MACHINE_EXTRA_RRECOMMENDS = "kernel-modules"
 UBOOT_LOCALVERSION = "-g${@d.getVar('SRCPV', True).partition('+')[2][0:7]}"
 
 UBOOT_ENTRYPOINT ?= "0x40008000"
-UBOOT_LOADADDRESS ?= "0x400080OB00"
 
 SPL_BINARY ?= "u-boot-sunxi-with-spl.bin"
 
